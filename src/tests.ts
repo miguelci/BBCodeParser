@@ -147,15 +147,15 @@ class TestTokenizer extends tsUnit.TestClass {
         htmlStr = parser.parseString("[b]test[b]");
         this.areIdentical("[b]test[b]", htmlStr);
 
+        htmlStr = parser.parseString("[code lang=\"accént\"]string[/code]");
+        this.areIdentical("<code class=\"accént\">string</code>", htmlStr);
+
     }
 
     testParseAttributes() {
         var parser = new BBCodeParser(BBCodeParser.defaultTags());
         var htmlStr = parser.parseString("[code lang=\"test-lang\"]x = 4[/code]");
         this.areIdentical("<code class=\"test-lang\">x = 4</code>", htmlStr);
-
-        htmlStr = parser.parseString("[code lang=\"tést-lang\"]x = 4[/code]");
-        this.areIdentical("<code class=\"tést-lang\">x = 4</code>", htmlStr);
     }
 
     testStripTags() {
