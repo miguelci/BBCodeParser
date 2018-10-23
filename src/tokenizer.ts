@@ -25,9 +25,9 @@ function textToken(content: string) {
     return new Token(TokenType.Text, content);
 }
 
-var attrNameChars = "[a-zA-Z0-9\\.\\-_:;/]";
+var attrNameChars = "[a-zA-Z0-9\\.\\-_:;/\\S]";
 //var attrNameChars = "\\w";
-var attrValueChars = "[a-zA-Z0-9\\.\\-_:;#/\\s]";
+var attrValueChars = "[a-zA-Z0-9\\.\\-_:;#/\\s\\S]";
 
 //Creates a new tag token
 function tagToken(match) {

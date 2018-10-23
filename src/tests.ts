@@ -153,6 +153,9 @@ class TestTokenizer extends tsUnit.TestClass {
         var parser = new BBCodeParser(BBCodeParser.defaultTags());
         var htmlStr = parser.parseString("[code lang=\"test-lang\"]x = 4[/code]");
         this.areIdentical("<code class=\"test-lang\">x = 4</code>", htmlStr);
+
+        htmlStr = parser.parseString("[code lang=\"tést-lang\"]x = 4[/code]");
+        this.areIdentical("<code class=\"tést-lang\">x = 4</code>", htmlStr);
     }
 
     testStripTags() {
@@ -168,7 +171,8 @@ class TestTokenizer extends tsUnit.TestClass {
     }
 
     testEscapingHtmlOption() {
-        var parser = new BBCodeParser(BBCodeParser.defaultTags());
+        var options = { escapeHTML: true };
+        var parser = new BBCodeParser(BBCodeParser.defaultTags(), options);
         var htmlStr = parser.parseString('[b]String[/b] with <a href="">html</a><br/>')
         this.areIdentical('<b>String</b> with &lt;a href=""&gt;html&lt;/a&gt;&lt;br/&gt;', htmlStr);
 
