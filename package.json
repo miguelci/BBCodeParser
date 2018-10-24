@@ -1,5 +1,5 @@
 {
-  "name": "bbcodeparser",
+  "name": "bbcode-parser",
   "version": "1.0.0",
   "description": "A fork from bbcode-parsed to add accents capability",
   "main": "index.js",
