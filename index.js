@@ -1,1 +1,1 @@
-module.exports = require("./bbCodeParser");
+module.exports = require("../src/bbCodeParser");
