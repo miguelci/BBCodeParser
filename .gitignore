@@ -5,3 +5,5 @@ src/web.config
 src/BBCodeParser.*.suo
 npm
 .idea
+build
+src
