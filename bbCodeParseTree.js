@@ -1,4 +1,4 @@
-var Tokenizer = require("./tokenizer");
+var {Tokenizer, TokenType} = require("./tokenizer");
 
 //The types of the trees
 var TreeType;

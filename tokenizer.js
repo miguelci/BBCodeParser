@@ -138,4 +138,7 @@ var Tokenizer = /** @class */ (function () {
     return Tokenizer;
 }());
 
-module.exports = Tokenizer;
+module.exports = {
+    Tokenizer: Tokenizer,
+    TokenType: TokenType
+};
