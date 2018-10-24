@@ -1,6 +1,10 @@
-var BBCodeParseTree = require("./bbCodeParseTree")
-var BBTag = require("./bbTag");
-
+"use strict";
+/// <reference path="bbCodeParseTree.ts" />
+/// <reference path="bbTag.ts" />
+exports.__esModule = true;
+var bbCodeParseTree_1 = require("./bbCodeParseTree");
+var bbTag_1 = require("./bbTag");
+//Indicates if the first string ends with the second str
 function endsWith(str, endStr) {
     if (str.length == 0) {
         return false;
@@ -47,7 +51,7 @@ var BBCodeParser = /** @class */ (function () {
         if (insertLineBreak === void 0) { insertLineBreak = true; }
         if (escapingHtml === void 0) { escapingHtml = true; }
         //Create the parse tree
-        var parseTree = BBCodeParseTree.buildTree(content, this.bbTags);
+        var parseTree = bbCodeParseTree_1.BBCodeParseTree.buildTree(content, this.bbTags);
         //If the tree is invalid, return the input as text
         if (parseTree == null || !parseTree.isValid()) {
             return content;
@@ -62,7 +66,7 @@ var BBCodeParser = /** @class */ (function () {
         var htmlString = "";
         var suppressLineBreak = false;
         subTrees.forEach(function (currentTree) {
-            if (currentTree.treeType == TreeType.Text) {
+            if (currentTree.treeType == bbCodeParseTree_1.TreeType.Text) {
                 var textContent = currentTree.content;
                 if (escapingHtml) {
                     textContent = (_this.options.escapeHTML) ? escapeHTML(textContent) : textContent;
@@ -93,16 +97,16 @@ var BBCodeParser = /** @class */ (function () {
     BBCodeParser.defaultTags = function () {
         var bbTags = new Array();
         //Simple tags
-        bbTags["b"] = new BBTag("b", true, false, false);
-        bbTags["i"] = new BBTag("i", true, false, false);
-        bbTags["u"] = new BBTag("u", true, false, false);
-        bbTags["text"] = new BBTag("text", true, false, true, function (tag, content, attr) {
+        bbTags["b"] = new bbTag_1["default"]("b", true, false, false);
+        bbTags["i"] = new bbTag_1["default"]("i", true, false, false);
+        bbTags["u"] = new bbTag_1["default"]("u", true, false, false);
+        bbTags["text"] = new bbTag_1["default"]("text", true, false, true, function (tag, content, attr) {
             return content;
         });
-        bbTags["img"] = new BBTag("img", true, false, false, function (tag, content, attr) {
+        bbTags["img"] = new bbTag_1["default"]("img", true, false, false, function (tag, content, attr) {
             return "<img src=\"" + content + "\" />";
         });
-        bbTags["url"] = new BBTag("url", true, false, false, function (tag, content, attr) {
+        bbTags["url"] = new bbTag_1["default"]("url", true, false, false, function (tag, content, attr) {
             var link = content;
             if (attr["url"] != undefined) {
                 link = escapeHTML(attr["url"]);
@@ -112,7 +116,7 @@ var BBCodeParser = /** @class */ (function () {
             }
             return "<a href=\"" + link + "\" target=\"_blank\">" + content + "</a>";
         });
-        bbTags["code"] = new BBTag("code", true, false, true, function (tag, content, attr) {
+        bbTags["code"] = new bbTag_1["default"]("code", true, false, true, function (tag, content, attr) {
             var lang = attr["lang"];
             if (lang !== undefined) {
                 return "<code class=\"" + escapeHTML(lang) + "\">" + content + "</code>";
@@ -134,5 +138,4 @@ var BBCodeParser = /** @class */ (function () {
     };
     return BBCodeParser;
 }());
-
-module.exports = BBCodeParser;
+exports.BBCodeParser = BBCodeParser;

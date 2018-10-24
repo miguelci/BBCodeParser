@@ -1,12 +1,15 @@
-var {Tokenizer, TokenType} = require("./tokenizer");
-
+"use strict";
+/// <reference path="bbCodeParser.ts" />
+/// <reference path="tokenizer.ts" />
+exports.__esModule = true;
+var tokenizer_1 = require("./tokenizer");
 //The types of the trees
 var TreeType;
 (function (TreeType) {
     TreeType[TreeType["Root"] = 0] = "Root";
     TreeType[TreeType["Text"] = 1] = "Text";
     TreeType[TreeType["Tag"] = 2] = "Tag";
-})(TreeType || (TreeType = {}));
+})(TreeType = exports.TreeType || (exports.TreeType = {}));
 //Represents a parse tree
 var BBCodeParseTree = /** @class */ (function () {
     //Creates a new parse tree
@@ -39,7 +42,7 @@ var BBCodeParseTree = /** @class */ (function () {
     //Builds a parse tree from the given string
     BBCodeParseTree.buildTree = function (str, bbTags) {
         //Get the tokens
-        var tokenizer = new Tokenizer(bbTags);
+        var tokenizer = new tokenizer_1.Tokenizer(bbTags);
         var tokens = tokenizer.tokenizeString(str);
         //Build the tree
         return BBCodeParseTree.buildTreeFromTokens(new BBCodeParseTree(TreeType.Root, str), tokens.reverse());
@@ -58,16 +61,16 @@ var BBCodeParseTree = /** @class */ (function () {
         //Remove the first token
         var currentToken = tokens.pop();
         //Add the text token as a text parse tree
-        if (currentToken.tokenType == TokenType.Text) {
+        if (currentToken.tokenType == tokenizer_1.TokenType.Text) {
             rootTree.subTrees.push(new BBCodeParseTree(TreeType.Text, currentToken.content));
         }
         //Create a new tag tree and find its subtrees
-        if (currentToken.tokenType == TokenType.StartTag) {
+        if (currentToken.tokenType == tokenizer_1.TokenType.StartTag) {
             var tagName = currentToken.content;
             rootTree.subTrees.push(BBCodeParseTree.buildTreeFromTokens(new BBCodeParseTree(TreeType.Tag, tagName, currentToken.tagAttributes), tokens, tagName));
         }
         //Check if its the correct end tag
-        if (currentToken.tokenType == TokenType.EndTag) {
+        if (currentToken.tokenType == tokenizer_1.TokenType.EndTag) {
             var tagName = currentToken.content;
             if (tagName == currentTag) {
                 return rootTree;
@@ -87,5 +90,4 @@ var BBCodeParseTree = /** @class */ (function () {
     };
     return BBCodeParseTree;
 }());
-
-module.exports = BBCodeParseTree;
+exports.BBCodeParseTree = BBCodeParseTree;

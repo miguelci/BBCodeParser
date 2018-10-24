@@ -1,3 +1,5 @@
+"use strict";
+exports.__esModule = true;
 //Represents a BB tag
 var BBTag = /** @class */ (function () {
     //Creates a new BB tag
@@ -30,5 +32,4 @@ var BBTag = /** @class */ (function () {
     };
     return BBTag;
 }());
-
-module.exports = BBTag;
+exports["default"] = BBTag;

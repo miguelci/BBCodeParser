@@ -1,11 +1,13 @@
+"use strict";
 /// <reference path="bbCodeParser.ts" />
+exports.__esModule = true;
 //The type of a token
 var TokenType;
 (function (TokenType) {
     TokenType[TokenType["Text"] = 0] = "Text";
     TokenType[TokenType["StartTag"] = 1] = "StartTag";
     TokenType[TokenType["EndTag"] = 2] = "EndTag";
-})(TokenType || (TokenType = {}));
+})(TokenType = exports.TokenType || (exports.TokenType = {}));
 //Represents a token
 var Token = /** @class */ (function () {
     function Token(tokenType, content, tagAttributes, tagStr) {
@@ -24,6 +26,7 @@ var Token = /** @class */ (function () {
     };
     return Token;
 }());
+exports.Token = Token;
 //Creates a new text token
 function textToken(content) {
     return new Token(TokenType.Text, content);
@@ -137,8 +140,4 @@ var Tokenizer = /** @class */ (function () {
     };
     return Tokenizer;
 }());
-
-module.exports = {
-    Tokenizer: Tokenizer,
-    TokenType: TokenType
-};
+exports.Tokenizer = Tokenizer;
