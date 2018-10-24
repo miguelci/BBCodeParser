@@ -137,3 +137,5 @@ var Tokenizer = /** @class */ (function () {
     };
     return Tokenizer;
 }());
+
+module.exports = Tokenizer;
