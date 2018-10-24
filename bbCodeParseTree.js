@@ -90,4 +90,4 @@ var BBCodeParseTree = /** @class */ (function () {
     };
     return BBCodeParseTree;
 }());
-exports.BBCodeParseTree = BBCodeParseTree;
+module.exports = BBCodeParseTree;

@@ -138,4 +138,4 @@ var BBCodeParser = /** @class */ (function () {
     };
     return BBCodeParser;
 }());
-exports.BBCodeParser = BBCodeParser;
+module.exports = BBCodeParser;

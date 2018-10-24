@@ -32,4 +32,4 @@ var BBTag = /** @class */ (function () {
     };
     return BBTag;
 }());
-exports["default"] = BBTag;
+module.exports = BBTag;
