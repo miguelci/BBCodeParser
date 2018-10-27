@@ -29,7 +29,7 @@ function textToken(content) {
 }
 var attrNameChars = "[a-zA-Z0-9\\.\\-_:;/\\S]";
 //var attrNameChars = "\\w";
-var attrValueChars = "[a-zA-Z0-9\\.\\-_:;#/\\s\\S]";
+var attrValueChars = "[^\'\"]";
 
 //Creates a new tag token
 function tagToken(match) {
